@@ -1,0 +1,9 @@
+<html>
+<body>
+<ul>
+<% products.each do |product| %>
+<li><%= product['Sku'] %> - <%= product['ProductName'] %></li>
+<% end %>
+</ul>
+</body>
+</html>
