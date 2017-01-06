@@ -31,6 +31,19 @@ class McpSinatraApp < Sinatra::Base
         end
     end
 
+    get '/products/:sku' do
+        if !is_logged_in? then
+            "Nope"
+        else
+            erb :product, :locals => { :sku => params['sku'] }
+		end
+	end
+
+	post '/recommendation' do
+		recommendation = session[:user_id].get_fulfillment_recommendations(sku: params[:sku], quantity: params[:quantity], country: params[:country], postal_code: params[:postal_code]);
+		erb :recommendation, :locals => { :recommendations => recommendation['recommendations'] }
+	end
+
     private
 
     def is_logged_in?

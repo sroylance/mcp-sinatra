@@ -2,7 +2,7 @@
 <body>
 <ul>
 <% products.each do |product| %>
-<li><%= product['Sku'] %> - <%= product['ProductName'] %></li>
+<li><a href="/products/<%= product['Sku'] %>"><%= product['Sku'] %> - <%= product['ProductName'] %><</a></li>
 <% end %>
 </ul>
 </body>
