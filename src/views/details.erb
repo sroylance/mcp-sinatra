@@ -1,8 +1,11 @@
 <html>
 <body>
+    <h3>Design</h3>
+    <br />
+    <img src=<%= document_preview %> />
     <form method="POST", action="/recommendation">
         <input type = "hidden" name = "sku" value = "<%= sku %>" />
-        <p>Quantity: <input type="number" name="quantity"></p>
+        <p>Quantity: <input type="number" name="quantity" max="100"></p>
         <p>Country: <input type="text" name="country"></p>
         <p>Postal Code: <input type="number" name="postal_code" min="5">
         <input type="submit">

@@ -1,0 +1,27 @@
+<html>
+<body>
+    <h2>Product Name: <%= product['ProductName'] %></h2>
+    <!-- <form method="POST", action="/products/<%= product['Sku'] %>/design">
+        <input type = "hidden" name = "sku" value = "<%= product['Sku'] %>" />
+        <p>Quantity: <input type="number" name="quantity" max="100"></p>
+        <p>Country: <input type="text" name="country"></p>
+        <p>Postal Code: <input type="number" name="postal_code" min="5">
+        <input type="submit">
+    </form>
+    -->
+
+    <form method="POSt" action="/products/<%= product['Sku'] %>/details">
+        <input type="text" name="document_text" />
+        <input type="submit">
+    </form>
+
+    <p>Surface Information</p>
+    <% product['Surfaces'].each do |surface| %>
+    <ul>
+        <li>Name: <%= surface['Name' ]%></li>
+        <li>Width: <%= surface['WidthInMm'] %>mm</li>
+        <li>Height: <%= surface['HeightInMm'] %>mm</li>
+    </ul>
+    <% end %>
+</body>
+</html>

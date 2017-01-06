@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    cimpress_mcp (0.0.1)
+    cimpress_mcp (0.0.2)
       prawn
       rest-client
     daemons (1.2.4)
