@@ -13,7 +13,7 @@ require 'prawn/measurement_extensions'
         
         def create_pdf(size:, document_text:)
             temp_pdf = Dir::Tmpname.make_tmpname(['MCPDOC', '.pdf'], nil)
-            Prawn::Document.generate(temp_pdf, :page_size => size, :page_layout => :landscape, :margin => 0) do
+            Prawn::Document.generate(temp_pdf, :page_size => size, :page_layout => :portrait, :margin => 0) do
                 bounding_box([25, bounds.height-25], :width => bounds.width-50, :height => bounds.height-50) do
                     text document_text
                 end

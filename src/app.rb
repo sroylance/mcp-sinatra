@@ -43,12 +43,13 @@ class McpSinatraApp < Sinatra::Base
 
     post '/products/:sku/details' do
         generator = McpDocument::Generator.new()
-        temp_document = generator.create_document(width: 123, height: 123, document_text: "this is a test this is a test thisisa test")
+        surfaces = session[:user_id].get_surfaces(sku: params[:sku])['Surfaces']
+        temp_document = generator.create_document(width: surfaces[0]['WidthInMm'], height: surfaces[0]['HeightInMm'], document_text: params['document_text'])
         uploaded_document = session[:user_id].upload_file(file: File.new(temp_document))
-        
         document = session[:user_id].create_document(sku: params[:sku], upload: "https://uploads.documents.cimpress.io/v1/uploads/#{uploaded_document['uploadId']}")
+        scene = session[:user_id].get_scene_render(document_reference: URI.escape(document['Output']['PreviewInstructionSourceUrl'], /\W/), width: 512)
         erb :details, :locals => {
-                                    :document_preview => "http://rendering.documents.cimpress.io/v1/vcs/preview?width=500&instructions_uri=" + URI.escape(document['Output']['PreviewInstructionSourceUrl'], /\W/),
+                                    :document_preview => scene['Scenes'][0]['RenderingUrl'],
                                     :sku => params[:sku]
                                  }
     end
